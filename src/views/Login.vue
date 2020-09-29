@@ -81,12 +81,26 @@ export default {
           .then((result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             let token = result.credential.accessToken;
+
             // The signed-in user info.
             let user = result.user;
+
+            // firebase
+            //     .firestore()
+            //     .collection("user")
+            //     .where("uid", "==", user.uid).get()
+            // if (
+            // );
+            this.createUserDocument();
             //TODO remove this line
             console.log(user, token);
           })
-          .then(() => this.$router.replace({ name: "Home" }))
+          .then(() =>
+            this.$router.push({
+              name: "Register",
+              params: { googleLogin: true },
+            })
+          )
           .catch(function(error) {
             // Handle Errors here.
             let errorCode = error.code;
@@ -113,7 +127,6 @@ export default {
         .set(user)
         .catch((error) => alert(error.message));
     },
-    
   },
   mounted() {
     M.AutoInit();
@@ -122,6 +135,8 @@ export default {
 </script>
 
 <style scoped>
+body {
+}
 .graphic {
   background: url(../assets/graphic.jpeg);
   background-repeat: no-repeat;
@@ -130,7 +145,10 @@ export default {
 }
 .main {
   height: 100vh;
-  background-position: left;
+  background-position: center;
+  background-repeat: repeat;
+  background-size: auto;
+  /* background: url(../assets/x.jpg); */
 
   margin: 0;
 }
@@ -144,7 +162,7 @@ export default {
 .login-btn-conainter {
   padding: 0 0 0 0.6em;
 }
- button {
+button {
   border-radius: 0.3em;
   height: 46px;
   background: #efba98;

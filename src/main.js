@@ -3,9 +3,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import firebase from 'firebase/app'
+import VCalendar from 'v-calendar';
 import '@/assets/style/main.css'
 import 'materialize-css/dist/css/materialize.min.css'
 import 'material-design-icons/iconfont/material-icons.css'
+import "firebase/auth";
+import "firebase/firestore";
+
+Vue.config.productionTip = false
 
 const firebaseConfig = {
   apiKey: "AIzaSyBeb6L2B5z6W71MQ_dfZJnRMqv6ix1zasA",
@@ -18,12 +23,46 @@ const firebaseConfig = {
   measurementId: "G-J1G081KSLW"
 };
 // Initialize Firebase
+
+Vue.use(VCalendar, {
+  componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />
+  // ...other defaults
+});
+
 firebase.initializeApp(firebaseConfig);
 
-Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+firebase.auth().onAuthStateChanged(
+  async () => {
+    //     // store.dispatch("fetchUser", user);
+    let app
+    // if (user) {
+    //   let { uid } = firebase.auth().currentUser
+    //   firebase
+    //     .firestore()
+    //     .collection("users")
+    //     .doc(uid)
+    //     .onSnapshot(
+    //       (doc) => {
+    //         if (doc.exists) {
+    //           // store.dispatch("updateUserData", doc.data())
+    //         } else {
+    //           console.log("not", uid);
+    //         }
+    //       },
+    //       (err) => console.log(err)
+    //     )
+    // }
+    // user
+    if (!app) {
+      new Vue({
+        router,
+        store,
+        render: h => h(App)
+      }).$mount('#app')
+    }
+    console.log()
+  }
+)
+
+
