@@ -33,6 +33,7 @@ Vue.use(VCalendar, {
 firebase.initializeApp(firebaseConfig);
 // firebase.auth().signOut()
 
+
 firebase.auth().onAuthStateChanged(
   async (user) => {
     let app

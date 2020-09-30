@@ -20,7 +20,14 @@
         <slide> <carousel-card background="ebs1.png"></carousel-card></slide>
       </carousel>
     </div>
-    <div class="row"></div>
+    <div class="row">
+      <span class="col s8 offset-s2"
+        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quo
+        nulla mollitia magnam voluptatum reiciendis voluptatibus ea debitis
+        harum asperiores dolorem est velit sed quis at quasi, necessitatibus sit
+        non?
+      </span>
+    </div>
   </div>
 </template>
 

@@ -85,25 +85,27 @@ export default {
             // The signed-in user info.
             let user = result.user;
 
-            let exists = await firebase
+            let userDoc = await firebase
               .firestore()
               .collection("users")
               .doc(`${firebase.auth().currentUser.uid}`)
-              .get().exists;
+              .get();
+            let exists = userDoc.exists;
             console.log(exists);
+
             if (!exists) {
-              // this.createUserDocument();
+              this.createUserDocument();
+              this.$router.push({
+                name: "Register",
+                params: { googleLogin: true },
+              });
+            } else {
+              this.$router.push({ name: "Home" });
             }
             //TODO remove this line
             console.log(user, token);
           })
-          .then(() =>
-            this.$router.push({
-              name: "Register",
-              params: { googleLogin: true },
-            })
-          )
-          .catch(function (error) {
+          .catch(function(error) {
             // Handle Errors here.
             let errorCode = error.code;
             let errorMessage = error.message;

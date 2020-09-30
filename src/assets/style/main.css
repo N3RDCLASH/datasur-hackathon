@@ -1,3 +1,10 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
 .lg-input {
   height: 1.5rem !important;
   font-size: 16px !important;

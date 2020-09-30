@@ -7,6 +7,7 @@
           mode="range"
           :value="null"
           color="red"
+          class=""
         ></vc-calendar
       ></card>
       <card title="Schedule">
@@ -17,12 +18,14 @@
         >
           <li>
             <div class="collapsible-header">
-              <i class="material-icons" color="">event</i>{{ appointment.name }}
+              <i class="material-icons red-text" color="">event</i
+              >{{ appointment.name }}
             </div>
             <div class="collapsible-body">
+              <h6>Apointment Information</h6>
               <div class="row">
                 <div class="col s12">
-                  <input type="text" class="datepicker" disabled />
+                  <input type="text" class="datepicker" value disabled />
                 </div>
               </div>
               <div class="row">
@@ -46,6 +49,12 @@
                     disabled
                   />
                 </div>
+              </div>
+              <div class="row">
+                <label for="">Description</label>
+                <span class=" left left-align">{{
+                  appointment.description
+                }}</span>
               </div>
             </div>
           </li>
@@ -102,3 +111,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.card-title {
+  color: #af301d;
+}
+</style>

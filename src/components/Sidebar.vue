@@ -2,18 +2,17 @@
   <div class="">
     <ul id="slide-out" class="sidenav sidebar sidenav-fixed">
       <img src="../assets/logo1.png" width="150px" alt="logo" class="logo" />
-        <router-link :to="{ name: 'Home' }">
-          <li>
-            <a><i class="material-icons">dashboard</i> Home</a>
-          </li>
-        </router-link>
-        <router-link :to="{ name: 'Providers' }">
-          <li >
-            <a 
-              ><i class="material-icons">business</i> Providers</a
-            >
-          </li>
-        </router-link>
+      <router-link :to="{ name: 'Home' }">
+        <li>
+          <a><i class="material-icons">dashboard</i> Home</a>
+        </li>
+      </router-link>
+      <router-link :to="{ name: 'Providers' }">
+        <li>
+          <a><i class="material-icons">business</i> Providers</a>
+        </li>
+      </router-link>
+      <img height="100px" src="../assets/wave.gif" alt="" />
     </ul>
   </div>
 </template>
@@ -32,5 +31,8 @@ export default {};
 }
 nav-block {
   margin-top: 10px;
+}
+img {
+  margin-top: 1em;
 }
 </style>

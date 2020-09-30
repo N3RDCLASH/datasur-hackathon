@@ -25,6 +25,11 @@ const routes = [
         path: '/providers',
         name: 'Providers',
         component: () => import('../views/Providers.vue')
+      },
+      {
+        path: '/provider/:name',
+        name: 'Provider',
+        component: () => import('../views/Provider.vue')
       }
     ]
   },
@@ -68,7 +73,7 @@ router.beforeEach(async (to, from, next) => {
     if (!registerComplete) {
       // next({ name: "Register", params: { googleLogin: true } })
     }
-    // else { next("/home") }
+    else { next() }
 
   } else {
     next()
