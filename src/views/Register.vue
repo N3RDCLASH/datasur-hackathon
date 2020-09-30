@@ -22,6 +22,7 @@
                     type="text"
                     name="firstname"
                     class="lg-input"
+                    v-model="form2.firstname"
                     id="firstname"
                     required
                   /><label for="firstname" class="lg-input-label"
@@ -35,6 +36,7 @@
                     type="text"
                     name="lastname"
                     class="lg-input"
+                    v-model="form2.lastname"
                     id="lastname"
                     required
                   /><label for="lastname" class="lg-input-label"
@@ -48,6 +50,7 @@
                     type="date"
                     name="date_of_birth"
                     class="lg-input"
+                    v-model="form2.date_of_birth"
                     id="date_of_birth"
                   /><label for="date_of_birth" class="lg-input-label"
                     >Date of Birth</label
@@ -56,7 +59,7 @@
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <select class="icons" id="country">
+                  <select class="icons" id="country" v-model="form2.country">
                     <option value="" disabled selected class="lg-input"
                       >Choose your country</option
                     >

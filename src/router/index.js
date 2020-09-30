@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
 import firebase from 'firebase/app'
 import 'firebase/auth'
+
+import store from '@/store/index'
 
 Vue.use(VueRouter)
 
@@ -10,8 +12,16 @@ const routes = [
   {
     path: '/',
     redirect: '/home',
+
     meta: { requiresAuth: true },
-    component: Home
+    component: () => import('../layout/DashboardLayout.vue'),
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        component: () => import('../views/Home.vue')
+      }
+    ]
   },
   {
     path: '/login',
@@ -37,20 +47,23 @@ const router = new VueRouter({
 
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
-  // const userInfo = ; 
-  const registerComplete = (await firebase.firestore().collection('users').doc(`${firebase.auth().currentUser.uid}`).get()).data().registerComplete;
+
   const isAuthenticated = firebase.auth().currentUser
+
+  let registerComplete = store.state.user
+  console.log(registerComplete)
+
   if (requiresAuth && !isAuthenticated) {
     next("/login")
   } else {
     next()
   }
 
-  if (to.name == "Home" || to.name == "Login" && isAuthenticated || to.name == "Register" && isAuthenticated) {
+  if (to.name == "Home" && isAuthenticated || to.name == "Login" && isAuthenticated || to.name == "Register" && isAuthenticated) {
     if (!registerComplete) {
-      next({ name: "Register", params: { googleLogin: true } })
+      // next({ name: "Register", params: { googleLogin: true } })
     }
-    else next("/home")
+    // else { next("/home") }
 
   } else {
     next()

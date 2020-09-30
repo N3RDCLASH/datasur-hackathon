@@ -30,29 +30,30 @@ Vue.use(VCalendar, {
 });
 
 firebase.initializeApp(firebaseConfig);
-
+// firebase.auth().signOut()
 
 firebase.auth().onAuthStateChanged(
-  async () => {
-    //     // store.dispatch("fetchUser", user);
+  async (user) => {
     let app
-    // if (user) {
-    //   let { uid } = firebase.auth().currentUser
-    //   firebase
-    //     .firestore()
-    //     .collection("users")
-    //     .doc(uid)
-    //     .onSnapshot(
-    //       (doc) => {
-    //         if (doc.exists) {
-    //           // store.dispatch("updateUserData", doc.data())
-    //         } else {
-    //           console.log("not", uid);
-    //         }
-    //       },
-    //       (err) => console.log(err)
-    //     )
-    // }
+    if (user) {
+      let { uid } = firebase.auth().currentUser
+      await firebase
+        .firestore()
+        .collection("users")
+        .doc(uid)
+        .onSnapshot(
+          (doc) => {
+            if (doc.exists) {
+              store.dispatch("updateUserData", doc.data())
+              // store.dispatch("fetchUser", user);
+            } else {
+              console.log("not", uid);
+            }
+          },
+          (err) => console.log(err)
+        )
+    }
+
     // user
     if (!app) {
       new Vue({
@@ -64,5 +65,3 @@ firebase.auth().onAuthStateChanged(
     console.log()
   }
 )
-
-

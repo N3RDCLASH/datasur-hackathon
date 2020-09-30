@@ -25,7 +25,7 @@
               <label for="last_name" class="lg-input-label"> Password</label>
             </div>
           </div>
-          <div class="row login-btn-conainter ">
+          <div class="row login-btn-conainter">
             <button
               class="btn waves-effect waves-light col s12"
               type="submit"
@@ -78,20 +78,22 @@ export default {
         let login = await firebase
           .auth()
           .signInWithPopup(provider)
-          .then((result) => {
+          .then(async (result) => {
             // This gives you a Google Access Token. You can use it to access the Google API.
             let token = result.credential.accessToken;
 
             // The signed-in user info.
             let user = result.user;
 
-            // firebase
-            //     .firestore()
-            //     .collection("user")
-            //     .where("uid", "==", user.uid).get()
-            // if (
-            // );
-            this.createUserDocument();
+            let exists = await firebase
+              .firestore()
+              .collection("users")
+              .doc(`${firebase.auth().currentUser.uid}`)
+              .get().exists;
+            console.log(exists);
+            if (!exists) {
+              // this.createUserDocument();
+            }
             //TODO remove this line
             console.log(user, token);
           })
@@ -101,7 +103,7 @@ export default {
               params: { googleLogin: true },
             })
           )
-          .catch(function(error) {
+          .catch(function (error) {
             // Handle Errors here.
             let errorCode = error.code;
             let errorMessage = error.message;
@@ -135,13 +137,16 @@ export default {
 </script>
 
 <style scoped>
+form {
+  min-width: 300px;
+}
 body {
 }
 .graphic {
   background: url(../assets/graphic.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
-  height: 400px;
+  height: 280px;
 }
 .main {
   height: 100vh;
