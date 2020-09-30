@@ -2,10 +2,18 @@
   <div class="">
     <ul id="slide-out" class="sidenav sidebar sidenav-fixed">
       <img src="../assets/logo1.png" width="150px" alt="logo" class="logo" />
-      <nav-block>
-        <li><a href="#!">Home</a></li>
-        <li><a href="#!">Providers</a></li>
-      </nav-block>
+        <router-link :to="{ name: 'Home' }">
+          <li>
+            <a><i class="material-icons">dashboard</i> Home</a>
+          </li>
+        </router-link>
+        <router-link :to="{ name: 'Providers' }">
+          <li >
+            <a 
+              ><i class="material-icons">business</i> Providers</a
+            >
+          </li>
+        </router-link>
     </ul>
   </div>
 </template>

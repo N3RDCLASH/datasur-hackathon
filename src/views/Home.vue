@@ -7,26 +7,98 @@
           mode="range"
           :value="null"
           color="red"
-          is-dark
         ></vc-calendar
       ></card>
-      <card></card>
+      <card title="Schedule">
+        <ul
+          class="collapsible"
+          :key="appointment.id"
+          v-for="appointment of appointments"
+        >
+          <li>
+            <div class="collapsible-header">
+              <i class="material-icons" color="">event</i>{{ appointment.name }}
+            </div>
+            <div class="collapsible-body">
+              <div class="row">
+                <div class="col s12">
+                  <input type="text" class="datepicker" disabled />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s6">
+                  <label for="from">From</label>
+                  <input
+                    type="text"
+                    class="timepicker"
+                    name="from"
+                    :value="appointment.time_from.toDate()"
+                    disabled
+                  />
+                </div>
+                <div class="col s6">
+                  <label for="to">To</label>
+                  <input
+                    type="text"
+                    class="timepicker"
+                    name="to"
+                    :value="appointment.time_from.toDate()"
+                    disabled
+                  />
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </card>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import M from "materialize-css";
 import Card from "@/components/Card";
 import firebase from "firebase/app";
+import "firebase/firestore";
 import "firebase/auth";
+
 export default {
   name: "Home",
   components: { Card },
   data() {
     return {
       user: firebase.auth().currentUser.uid,
+      appointments: [],
+      attributes: [
+        {
+          key: "today",
+          highlight: true,
+          dates: new Date(),
+        },
+      ],
     };
+  },
+  methods: {
+    test() {
+      console.log("yolo");
+    },
+  },
+  async mounted() {
+    let appointments = await firebase
+      .firestore()
+      .collection("appointments")
+      .where("uid", "==", this.user)
+      .get();
+
+    if (appointments) {
+      appointments.forEach((element) => {
+        this.appointments.push(element.data());
+      });
+    }
+  },
+  updated() {
+    M.AutoInit();
   },
 };
 </script>

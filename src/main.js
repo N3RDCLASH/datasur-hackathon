@@ -9,8 +9,7 @@ import 'materialize-css/dist/css/materialize.min.css'
 import 'material-design-icons/iconfont/material-icons.css'
 import "firebase/auth";
 import "firebase/firestore";
-
-Vue.config.productionTip = false
+import VueCarousel from 'vue-carousel';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBeb6L2B5z6W71MQ_dfZJnRMqv6ix1zasA",
@@ -24,6 +23,8 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 
+Vue.config.productionTip = false
+Vue.use(VueCarousel);
 Vue.use(VCalendar, {
   componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />
   // ...other defaults
