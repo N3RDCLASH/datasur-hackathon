@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="row">
-      <card title="Calendar"
+      <card title="Calendar" class="scale-up-center"
         ><vc-calendar
           is-expanded
-          mode="range"
+          mode="single"
           :value="null"
           color="red"
           class=""
         ></vc-calendar
       ></card>
-      <card title="Schedule">
+      <card title="Schedule" class="scale-up-center">
         <ul
           class="collapsible"
           :key="appointment.id"
@@ -18,7 +18,7 @@
         >
           <li>
             <div class="collapsible-header">
-              <i class="material-icons red-text" color="">event</i
+              <i class="material-icons secondary" color="">event</i
               >{{ appointment.name }}
             </div>
             <div class="collapsible-body">
@@ -88,16 +88,12 @@ export default {
       ],
     };
   },
-  methods: {
-    test() {
-      console.log("yolo");
-    },
-  },
+  methods: {},
   async mounted() {
     let appointments = await firebase
       .firestore()
       .collection("appointments")
-      .where("uid", "==", this.user)
+      .where("uid", "==", "")
       .get();
 
     if (appointments) {

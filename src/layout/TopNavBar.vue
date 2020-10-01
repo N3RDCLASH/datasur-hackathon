@@ -21,7 +21,7 @@
               <img src="../assets/graphic.jpeg" alt="" class="circle user" />
             </a>
             <ul id="dropdown2" class="dropdown-content" tabindex="0">
-              <li tabindex="0"><a href="#!">two</a></li>
+              <li tabindex="0"><a href="#!"></a></li>
               <li tabindex="0"><a @click="logout()">Log Out</a></li>
             </ul>
           </li>

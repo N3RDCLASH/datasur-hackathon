@@ -3,7 +3,11 @@
     <div class="row">
       <carousel>
         <slide>
-          <carousel-card background="datasur1.png"></carousel-card
+          <carousel-card background="datasur1.png">
+            <router-link
+              class="card-link"
+              :to="{ name: 'Provider', params: { name: 'datasur' } }"
+            ></router-link> </carousel-card
         ></slide>
         <slide>
           <carousel-card>
@@ -21,12 +25,9 @@
       </carousel>
     </div>
     <div class="row">
-      <span class="col s8 offset-s2"
-        >Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti quo
-        nulla mollitia magnam voluptatum reiciendis voluptatibus ea debitis
-        harum asperiores dolorem est velit sed quis at quasi, necessitatibus sit
-        non?
-      </span>
+      <h4 style="color:#af301d" class="col s8 offset-s2 slide-left">
+        <i>Get in touch with some of our service providers!</i>
+      </h4>
     </div>
   </div>
 </template>
@@ -45,5 +46,11 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.card-link {
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  display: block;
 }
 </style>

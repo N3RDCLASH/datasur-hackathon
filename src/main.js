@@ -24,6 +24,7 @@ const firebaseConfig = {
 // Initialize Firebase
 
 Vue.config.productionTip = false
+
 Vue.use(VueCarousel);
 Vue.use(VCalendar, {
   componentPrefix: 'vc',  // Use <vc-calendar /> instead of <v-calendar />

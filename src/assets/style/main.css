@@ -4,6 +4,12 @@ body {
   width: 100%;
   margin: 0;
 }
+.primary {
+  color: #af301d;
+}
+.secondary {
+  color: #efba98;
+}
 
 .lg-input {
   height: 1.5rem !important;
@@ -52,3 +58,57 @@ input[type="search"]:not(.browser-default).validate + label,
 textarea.materialize-textarea.validate + label {
   width: 20% !important;
 }
+
+.scale-up-center {
+  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+    both;
+  animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.slide-left {
+  -webkit-animation: slide-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@-webkit-keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+/* scale up */
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(100px);
+    transform: translateX(100px);
+  }
+  100% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+  }
+}
+/* @keyframes slide-left {
+  0% {
+    -webkit-transform: translateX(100);
+    transform: translateX(100);
+  }
+  100% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(0px);
+  }
+} */
